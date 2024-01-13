@@ -39,6 +39,7 @@ Tested with versions in brackets:
 - [`olego`](https://github.com/chaolinzhanglab/olego) (1.1.9) *
 - [`quantas`](https://github.com/chaolinzhanglab/quantas) (1.1.1) *
 - [`czplib`](https://github.com/chaolinzhanglab/czplib) (1.0.9) *
+- [forked `ARACNe-AP`](https://github.com/chaolinzhanglab/ARACNe-AP)
 
 (*) see [recommended installations below](#recommended-installations)
 
@@ -167,7 +168,7 @@ Examples with mm10 genome.
 
         # dependency
         git clone https://github.com/chaolinzhanglab/czplib src
-        export PERL5LIB=/your/path/to/the/repository/src/czplib # recommended to place in .bashrc
+        export PERL5LIB=/your/path/to/the/repository/src/czplib # recommended to place in .bashrc or .bash_profile
         conda install -c bioconda perl-math-cdf
         ```
     - download annotations
@@ -175,6 +176,14 @@ Examples with mm10 genome.
         mkdir -p data/quantas/annotations/
         wget http://zhanglab.c2b2.columbia.edu/data/Quantas/data/mm10.tgz -O data/quantas/annotations/
         tar -xvf mm10.tgz -C data/quantas/annotations/
+        ```
+        
+- **ARACNe-AP**
+    - software
+        ```shell
+        git clone https://github.com/chaolinzhanglab/ARACNe-AP src
+        cd src/ARACNe-AP
+        ant main
         ```
     
     
