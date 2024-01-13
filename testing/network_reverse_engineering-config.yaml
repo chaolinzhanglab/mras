@@ -1,0 +1,41 @@
+# config file with test examples to check that everything works, it runs fast locally.
+# NOTE: there is not need to edit anything by default.
+
+PATHS:
+    # ----- ADVANCED -----
+    # ARACNe-AP repository
+    ARACNEAP_SRC_DIR: "src/ARACNe-AP"
+    
+    # tab-separated gene expression matrix
+    INPUT_GENEXPR_FILE: "src/ARACNe-AP/test/matrix.txt"
+    
+    # tab-separated splicing event inclusion matrices
+    INPUT_SPLICING_FILES:
+        cass: "src/ARACNe-AP/test/matrix.txt"
+        
+    # list of gene_id//NAME for regulators of interest
+    INPUT_REGULATORS_OI_FILE: "src/ARACNe-AP/test/tfs.txt"
+    
+    # output directory
+    OUTPUT_DIR: "testing/results/network_reverse_engineering"
+
+    # ----- GENERAL -----
+    TMP_DIR: "/tmp"
+
+    # ----- GENERAL -----
+    TESTING_REF_NETWORK_FILE: "data/examples/network_reverse_engineering/network.txt"
+    
+PARAMS:
+    # number of bootstraps to run
+    ## calculate MI threshold
+    ARACNE_MI_THRESH_SEED: 1
+    ARACNE_MI_THRESH_PVALUE: 0.00000001
+    ARACNE_N_BOOTSTRAPS: 5
+    ## pruning
+    ARACNE_BOOTSTRAP_MAX_TARGETS: 1000
+    ## consolidation
+    ARACNE_CONSOLIDATE_PVALUE: 1.1
+    
+    # testing
+    TEST_MODE: True
+    

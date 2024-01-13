@@ -1,0 +1,62 @@
+# config file with test examples to check that everything works, it runs fast locally.
+# Unless you followed the installation recommendations, there is only need to edit:
+#     - OLEGO_SRC_DIR
+#     - OLEGO_INDEX_PATT
+#     - OLEGO_JUNCTIONS_FILE
+#     - QUANTAS_SRC_DIR
+#     - QUANTAS_ANNOTATION_DIR
+
+PATHS:
+    # ----- ADVANCED -----
+    # list of fastq file full path names, sample identifiers and groupings
+    INPUT_SAMPLE_INFO_FILE: "testing/mapping_and_quantification-sample_info_single_end.csv"
+
+    # output directory
+    OUTPUT_DIR: "testing/results/single_end/mapping_and_quantification"
+    
+    # read mapping
+    OLEGO_SRC_DIR: "src/olego"
+
+    OLEGO_INDEX_PATT: "data/olego/indices/mm10/index"
+
+    OLEGO_JUNCTIONS_FILE: "data/olego/junctions/mm10.intron.hmr.bed"
+
+    # quantification of splicing and gene expression
+    QUANTAS_SRC_DIR: "src/quantas"
+
+    QUANTAS_ANNOTATION_DIR: "data/quantas/annotations/mm10"
+
+    # ----- GENERAL -----
+    TMP_DIR: "/tmp"
+    
+    # ----- TESTING -----
+    TESTING_REF_GENEXPR_FILE: "data/examples/mapping_and_quantification/{run_type}/expr.clean.txt"
+    
+    TESTING_REF_SPLICING_FILE: "data/examples/mapping_and_quantification/{run_type}/{data_type}.psi.clean.imputed.txt"
+    
+PARAMS:
+    # splicing event types to consider
+    EVENT_TYPES: ["cass"]
+    
+    # quantification options
+    ## split size (only paired-end)
+    QUANTAS_SPLIT_SIZE: 10000000
+    ## big exon length (only paired-end)
+    QUANTAS_E: 400
+    ## minimum read coverage to consider splicing event
+    QUANTAS_MIN_COV: 10
+    ## maximum standard deviation
+    QUANTAS_MAX_STD: 0.1
+    
+    # whether to combine groups of samples
+    COMBINE_GROUPS: True
+    
+    # imputation options for R's impute::impute.knn()
+    KNN_N_NEIGHBORS: 10
+    KNN_ROWMAX: 1
+    KNN_COLMAX: 1
+    KNN_MAXP: 1500
+    KNN_SEED: 362436069
+    
+    # testing
+    TEST_MODE: True
