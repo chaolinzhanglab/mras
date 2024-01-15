@@ -46,7 +46,10 @@ Tested with versions in brackets:
 
 #### Usage
 0. **Test installation locally**
-    Runs the full workflow using small .fastq files in `data/examples/fastq/paired_end` and checks the final gene expression and splicing matrices obtained are reproducible in your setting.
+    Runs the full workflow using small .fastq files in `data/examples/fastq/paired_end` and checks the final gene expression and splicing matrices obtained are reproducible in your setting. To minimize the size of this repository we have uploaded fastq example files on figshare:
+       - paired-end sample data: https://figshare.com/s/c0de1df7a0f8dadfc116
+       - (optional) single-end sample data: https://figshare.com/s/fb696f3d6832bee81c91
+   Make sure to download them and place them under the corresponding path previously mentioned.
     
     1. Make sure the following paths in `testing/mapping_and_quantification-config.yaml` related to Olego and Quantas installation are correct (see [Recommended installations](#recommended-installations) below):
         - `OLEGO_SRC_DIR`
@@ -63,12 +66,12 @@ Tested with versions in brackets:
     ```
 
 
-1. **Customization**: 
+2. **Customization**: 
     - Prepare your own `mapping_and_quantification-sample_info.csv` table with your own fastq paths, sample identifiers and grouping labels.
     - Modify `mapping_and_quantification-config.yaml` accordingly, especially, in the paths section (see "edit" tags)
 
 
-2. **Run workflow**
+3. **Run workflow**
     - locally
         ```shell
         snakemake -s mapping_and_quantification-workflow.smk --cores 12
