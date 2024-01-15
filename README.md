@@ -47,8 +47,10 @@ Tested with versions in brackets:
 #### Usage
 0. **Test installation locally**
     Runs the full workflow using small .fastq files in `data/examples/fastq/paired_end` and checks the final gene expression and splicing matrices obtained are reproducible in your setting. To minimize the size of this repository we have uploaded fastq example files on figshare:
-       - paired-end sample data: https://figshare.com/s/c0de1df7a0f8dadfc116
-       - (optional) single-end sample data: https://figshare.com/s/fb696f3d6832bee81c91
+
+    - paired-end sample data: https://figshare.com/s/c0de1df7a0f8dadfc116
+    - (optional) single-end sample data: https://figshare.com/s/fb696f3d6832bee81c91
+   
    Make sure to download them and place them under the corresponding path previously mentioned.
     
     1. Make sure the following paths in `testing/mapping_and_quantification-config.yaml` related to Olego and Quantas installation are correct (see [Recommended installations](#recommended-installations) below):
