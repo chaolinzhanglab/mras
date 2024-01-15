@@ -1,4 +1,4 @@
-# Master Regulator Analysis for Inference of Cell Type-Specific Alternative Splicing Regulation
+# Reverse engineering neuron type-specific splicing-regulatory networks from single-cell transcriptomes
 
 
 ## Outline
