@@ -205,6 +205,4 @@ Please, report any issues that you experience through this repository's ["Issues
 
 
 ## Citation
-Reverse engineering neuron type-specific and type-orthogonal splicing-regulatory networks using single-cell transcriptomes
-Daniel F Moakley, Melissa Campbell, Miquel Anglada-Girotto, Huijuan Feng, Andrea Califano, Edmund Au, Chaolin Zhang
-bioRxiv 2024.06.13.597128; doi: https://doi.org/10.1101/2024.06.13.597128
+Daniel F Moakley, Melissa Campbell, Miquel Anglada-Girotto, Huijuan Feng, Andrea Califano, Edmund Au, Chaolin Zhang. 2024. Reverse engineering neuron type-specific and type-orthogonal splicing-regulatory networks using single-cell transcriptomes. bioRxiv, doi: https://doi.org/10.1101/2024.06.13.597128
