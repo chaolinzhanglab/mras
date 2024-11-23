@@ -6,6 +6,7 @@ This pipeline is composed of two workflows that can be run independently dependi
 - The “Network reverse engineering” workflow takes an RPKM gene expression matrix, a PSI exon inclusion matrix, and a list of RBP names as input, inferring splicing regulatory networks and estimating RBP activity per single cell or per sample. Missing data values are first imputed by k-nearest neighbor. Then, it applies the ARACNe algorithm (Algorithm for the Reconstruction of Accurate Cellular NEtworks; Margolin et al. 2006), inferring splicing regulatory networks based on the mutual information between RBP expression and exon inclusion and returning a list of network edges (i.e. RBP regulons) with corresponding mutual information and p-values. Finally, it applies the VIPER algorithm (Virtual Inference of Protein activity by Enriched Regulon analysis; Alvarez et al. 2016) to estimate RBP activity for each input sample. In this step, the aREA algorithm (analytic Rank-based Enrichment Analysis) assesses the enrichment of regulon exons for each RBP based on weighted sums of quantile-transformed regulon exon inclusion ranks (see source literature for details). This workflow returns the splicing regulatory network and a matrix of estimated RBP activity values (normalized enrichment scores).
 
 ### Mapping and quantification
+Quantifies exon inclusion and gene expression using .fastq files an input.
 > **Note** 
 Ignore this workflow and its requirements if you already have quantified gene expression and exon inclusion as tab-separated matrices and do not wish to use our tools for quantification.
 
@@ -82,7 +83,7 @@ Tested with versions in brackets:
         ```
 
 ### Network reverse engineering
-Obtains RBP-splicing event regulons with ARACNe using a gene expression matrix, a splicing quantification matrix and a list of genes of interest (RBP). Applies the VIPER algorithm to the inferred regulons and exon inclusion matrices to estimate RBP activity.
+Infers splicing regulatory networks applying ARACNe to a gene expression matrix, a splicing quantification matrix and a list of regulators of interest (RBPs). Applies the VIPER algorithm using the inferred regulons and exon inclusion matrices to estimate RBP activity.
 > **Note** 
 While this workflow infers regulatory networks with ARACNe and uses them for RBP activity estimation by default, VIPER can also be run using regulatory networks derived using other methods. For details of how to run this step using networks produced elsewhere see the alternative workflow at `https://github.com/MiqG/viper_splicing`, which uses the empirically derived networks as described in Anglada-Girotto et al. 2024.
 
@@ -95,8 +96,8 @@ graph LR
     I[Estimated RBP activity]
 
     G --> H
-    E --> H
     F --> H
+    E --> H
     H --> I
     E --> I
 
@@ -202,8 +203,11 @@ Daniel F Moakley, Melissa Campbell, Miquel Anglada-Girotto, Huijuan Feng, Andrea
 
 ## References
 Wu, J., et al. (2013). "OLego: Fast and sensitive mapping of spliced mRNA-Seq reads using small seeds." Nucleic Acids Res 41(10): 5149-5163.
+
 Margolin, A. A., et al. (2006). "ARACNE: an algorithm for the reconstruction of gene regulatory networks in a mammalian cellular context." BMC Bioinformatics 7 Suppl 1(Suppl 1): S7.
+
 Alvarez, M. J., et al. (2016). "Functional characterization of somatic mutations in cancer using network-based inference of protein activity." Nat Genet 48(8): 838-847.
+
 Anglada-Girotto, M., Moakley, D. F., Zhang, C., Miravet-Verde, S., Califano, A., & Serrano, L. (2024). Disentangling the splicing factor programs underlying complex molecular phenotypes. bioRxiv, 2024-06.	
 	
 
