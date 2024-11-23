@@ -16,6 +16,7 @@ INPUT_REGULATORS_OI_FILE = PATHS["INPUT_REGULATORS_OI_FILE"]
 # outputs
 OUTPUT_DIR = PATHS["OUTPUT_DIR"]
 OUTPUT_DIR_ARACNEAP = os.path.join(OUTPUT_DIR,"aracne")
+OUTPUT_DIR_RBPACT = os.path.join(OUTPUT_DIR,"rbpactivity")
 
 # software
 ARACNEAP_SRC_DIR = PATHS["ARACNEAP_SRC_DIR"]
@@ -24,6 +25,8 @@ ARACNEAP_SRC_DIR = PATHS["ARACNEAP_SRC_DIR"]
 TMP_DIR = PATHS["TMP_DIR"]
 
 EVENT_TYPES = list(INPUT_SPLICING_FILES.keys())
+
+ESTIMATE_ACTIVITY = PARAMS["ESTIMATE_ACTIVITY"]
 
 TEST_MODE = PARAMS["TEST_MODE"]
 
@@ -38,7 +41,8 @@ rule all:
         expand(os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}",".done","done_bootstrap_{boot_i}"), data_type=EVENT_TYPES, boot_i=BOOTSTRAPS),
         expand(os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}",".done","done_pruning"), data_type=EVENT_TYPES),
         expand(os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}","pruned","network.txt"), data_type=EVENT_TYPES),
-        expand(os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}","pruned","regulons.rds"), data_type=EVENT_TYPES),
+        expand(os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}","regulon.rds"), data_type=EVENT_TYPES),
+        expand(os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}","rbpactivity.txt"), data_type=EVENT_TYPES),
         
         # testing
         expand(os.path.join("testing","TEST_PASSED-network_reverse_engineering-{data_type}"), data_type=EVENT_TYPES) if TEST_MODE else []
@@ -173,9 +177,12 @@ rule prepare_regulons:
     input:
         genexpr = INPUT_GENEXPR_FILE,
         splicing = lambda wildcards: INPUT_SPLICING_FILES[wildcards.data_type],
-        aracne_network = os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}","pruned","network.txt")
+        aracne_network = os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}","pruned","network.txt"),
     output:
-        regulons = os.path.join(OUTPUT_DIR_ARACNEAP,"regulons","{data_type}","pruned","regulons.rds")
+        os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}","regulon.rds"),
+    params:
+        output_dir = os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}")
+
     threads: 1
     resources:
         runtime = 3600*1, # 1 h
@@ -188,10 +195,33 @@ rule prepare_regulons:
                     --splicing_file={input.splicing} \
                     --genexpr_file={input.genexpr} \
                     --aracne_network_file={input.aracne_network} \
-                    --output_file={output.regulons}
+                    --output_folder={params.output_dir}
                     
-        echo "Done!"
+        echo "Done! estimating MOR!"
         """
+
+if ESTIMATE_ACTIVITY:
+    rule estimate_rbp_activity:
+        input:
+            splicing = lambda wildcards: INPUT_SPLICING_FILES[wildcards.data_type],
+        output:
+             os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}","rbpactivity.txt"),
+        params:
+            output_dir = os.path.join(OUTPUT_DIR_RBPACT,"regulons","{data_type}")
+        threads: 1
+        resources:
+            runtime = 3600*1, # 1 h
+            memory = 10 # GB
+        shell:
+            """
+            set -eo pipefail
+        
+            Rscript src/estimate_rbp_activity.R \
+                        --splicing_file={input.splicing} \
+                        --output_folder={params.output_dir}
+                    
+            echo "Done estimating RBP activity!"
+            """
 
 if TEST_MODE:
     rule test_reproducibility:
