@@ -7,25 +7,26 @@ PATHS:
     ARACNEAP_SRC_DIR: "src/ARACNe-AP"
     
     # tab-separated gene expression matrix
-    INPUT_GENEXPR_FILE: "src/ARACNe-AP/test/matrix.txt"
+    INPUT_GENEXPR_FILE: "data/examples/network_reverse_engineering/ARACNe_repo/matrix.txt"
     
     # tab-separated splicing event inclusion matrices
     INPUT_SPLICING_FILES:
-        cass: "src/ARACNe-AP/test/matrix.txt"
+        cass: "data/examples/network_reverse_engineering/ARACNe_repo/matrix.txt"
         
     # list of gene_id//NAME for regulators of interest
-    INPUT_REGULATORS_OI_FILE: "src/ARACNe-AP/test/tfs.txt"
+    INPUT_REGULATORS_OI_FILE: "data/examples/network_reverse_engineering/ARACNe_repo/tfs.txt"
     
-    # output directory
-    OUTPUT_DIR: "testing/results/network_reverse_engineering"
-
-    # ----- GENERAL -----
+    # output directories
+    OUTPUT_DIR: "results/test"
     TMP_DIR: "/tmp"
 
     # ----- GENERAL -----
-    TESTING_REF_NETWORK_FILE: "data/examples/network_reverse_engineering/network.txt"
+    TESTING_REF_NETWORK_FILE: "data/examples/network_reverse_engineering/ARACNe_repo/network.txt"
     
 PARAMS:
+    # whether to estimate RBP activity
+    ESTIMATE_ACTIVITY: True
+
     # number of bootstraps to run
     ## calculate MI threshold
     ARACNE_MI_THRESH_SEED: 1
