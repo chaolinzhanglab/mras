@@ -1,4 +1,4 @@
-# Reverse engineering splicing-regulatory networks from diverse cellular transcriptomes
+# Reverse engineering splicing-regulatory networks using diverse cellular transcriptomes
 
 ## Summary
 This pipeline is composed of two workflows that can be run independently depending on your starting materials:
