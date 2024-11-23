@@ -45,7 +45,7 @@ Tested with versions in brackets:
 
 #### Usage
 0. **Test installation locally**
-    Runs the full workflow using small .fastq files in `data/examples/fastq/paired_end` and checks the final gene expression and splicing matrices obtained are reproducible in your setting. To minimize the size of this repository we have uploaded fastq example files on figshare:
+    Runs the full workflow using small .fastq files in `data/examples/fastq/paired_end` and checks the final gene expression and splicing matrices obtained are reproducible in your setting. To minimize the size of this repository we have uploaded fastq example files on figshare.
     - paired-end sample data: https://figshare.com/s/c0de1df7a0f8dadfc116
     - single-end sample data: https://figshare.com/s/fb696f3d6832bee81c91
     
@@ -84,7 +84,7 @@ Tested with versions in brackets:
 ### Network reverse engineering
 Obtains RBP-splicing event regulons with ARACNe using a gene expression matrix, a splicing quantification matrix and a list of genes of interest (RBP). Applies the VIPER algorithm to the inferred regulons and exon inclusion matrices to estimate RBP activity.
 > **Note** 
-While this workflow infers regulatory networks with ARACNe and uses them for RBP activity estimation by default, VIPER can also be run using regulatory networks derived using other methods. For details of how to run this step using networks produced elsewhere see the alternative workflow at `https://github.com/MiqG/viper_splicing`, which uses the empirically derived networks described in Anglada-Girotto et al. 2024.
+While this workflow infers regulatory networks with ARACNe and uses them for RBP activity estimation by default, VIPER can also be run using regulatory networks derived using other methods. For details of how to run this step using networks produced elsewhere see the alternative workflow at `https://github.com/MiqG/viper_splicing`, which uses the empirically derived networks as described in Anglada-Girotto et al. 2024.
 
 ```mermaid
 graph LR
