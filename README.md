@@ -2,8 +2,8 @@
 
 ## Summary
 This pipeline is composed of two workflows that can be run independently depending on your starting materials:
--The “Mapping and quantification” workflow takes single- or paired-end fastq files as input and applies the OLego pipeline (Wu et al. 2013), returning RPKM (reads per kilobase million) gene expression and PSI (percent spliced in) exon inclusion matrices. This workflow can be applied keeping the data as single cells/samples or pooling cells into pseudobulk samples based on a configuration file.
--The “Network reverse engineering” workflow takes an RPKM gene expression matrix, a PSI exon inclusion matrix, and a list of RBP names as input, inferring splicing regulatory networks and estimating RBP activity per single cell or per sample. Missing data values are first imputed by k-nearest neighbor. Then, it applies the ARACNe algorithm (Algorithm for the Reconstruction of Accurate Cellular NEtworks; Margolin et al. 2006), inferring splicing regulatory networks based on the mutual information between RBP expression and exon inclusion and returning a list of network edges (i.e. RBP regulons) with corresponding mutual information and p-values. Finally, it applies the VIPER algorithm (Virtual Inference of Protein activity by Enriched Regulon analysis; Alvarez et al. 2016) to estimate RBP activity for each input sample. In this step, the aREA algorithm (analytic Rank-based Enrichment Analysis) assesses the enrichment of regulon exons for each RBP based on weighted sums of quantile-transformed regulon exon inclusion ranks (see source literature for details). This workflow returns the splicing regulatory network and a matrix of estimated RBP activity values (normalized enrichment scores).
+- The “Mapping and quantification” workflow takes single- or paired-end fastq files as input and applies the OLego pipeline (Wu et al. 2013), returning RPKM (reads per kilobase million) gene expression and PSI (percent spliced in) exon inclusion matrices. This workflow can be applied keeping the data as single cells/samples or pooling cells into pseudobulk samples based on a configuration file.
+- The “Network reverse engineering” workflow takes an RPKM gene expression matrix, a PSI exon inclusion matrix, and a list of RBP names as input, inferring splicing regulatory networks and estimating RBP activity per single cell or per sample. Missing data values are first imputed by k-nearest neighbor. Then, it applies the ARACNe algorithm (Algorithm for the Reconstruction of Accurate Cellular NEtworks; Margolin et al. 2006), inferring splicing regulatory networks based on the mutual information between RBP expression and exon inclusion and returning a list of network edges (i.e. RBP regulons) with corresponding mutual information and p-values. Finally, it applies the VIPER algorithm (Virtual Inference of Protein activity by Enriched Regulon analysis; Alvarez et al. 2016) to estimate RBP activity for each input sample. In this step, the aREA algorithm (analytic Rank-based Enrichment Analysis) assesses the enrichment of regulon exons for each RBP based on weighted sums of quantile-transformed regulon exon inclusion ranks (see source literature for details). This workflow returns the splicing regulatory network and a matrix of estimated RBP activity values (normalized enrichment scores).
 
 ### Mapping and quantification
 > **Note** 
@@ -49,9 +49,9 @@ Tested with versions in brackets:
     - paired-end sample data: https://figshare.com/s/c0de1df7a0f8dadfc116
     - single-end sample data: https://figshare.com/s/fb696f3d6832bee81c91
     
-    -Make sure to set the paths of the downloaded files correctly in the testing/mapping_and_quantification-config.yaml file.
-    -Set `TEST_MODE: True` in the configuration file.
-    -Make sure the following paths in `testing/mapping_and_quantification-config.yaml` related to Olego and Quantas installation are correct (see [Recommended installations](#recommended-installations) below):
+    - Make sure to set the paths of the downloaded files correctly in the testing/mapping_and_quantification-config.yaml file.
+    - Set `TEST_MODE: True` in the configuration file.
+    - Make sure the following paths in `testing/mapping_and_quantification-config.yaml` related to Olego and Quantas installation are correct (see [Recommended installations](#recommended-installations) below):
         - `OLEGO_SRC_DIR`
         - `OLEGO_INDEX_PATT`
         - `OLEGO_JUNCTIONS_FILE`
@@ -115,11 +115,11 @@ Tested with versions in brackets:
 
 #### Usage
 0. **Test installation locally**
-    Runs the full workflow using the input files supplied with the original ARACNe distribution. Here, there is no need to edit the config file.
+    Runs the full workflow using the input files supplied with the original ARACNe distribution, available at `data/examples/network_reverse_engineering/ARACNe_repo`. The configuration is set to access these files by default.
     ```shell
     snakemake -s network_reverse_engineering-workflow.smk --configfile=testing/network_reverse_engineering-config.yaml
     ```
-    We also include for reference the cell type-level exon inclusion matrix, RBP expression matrix, and inferred regulatory network files used in our publication (Moakley et al. 2024), available at data/examples/network_reverse_engineering/msCorticalCellTypes. The inferred network files can be used to estimate RBP activity by users with exon inclusion and RBP expression data quantified in mouse cortical cells. 
+    We also include for reference the cell type-level exon inclusion matrix, RBP expression matrix, and inferred regulatory network files used in our publication (Moakley et al. 2024), available at `data/examples/network_reverse_engineering/msCorticalCellTypes`. The inferred network files can be used to estimate RBP activity by users with exon inclusion and RBP expression data quantified in mouse cortical cells. 
 
 1. **Customization**: modify `network_reverse_engineering-config.yaml` accordingly, especially, in the paths section (see "edit" tags)
 > **Warning**
