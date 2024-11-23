@@ -2,7 +2,7 @@
 
 ## Summary
 This pipeline is composed of two workflows that can be run independently depending on your starting materials:
-- The “Mapping and quantification” workflow takes single- or paired-end fastq files as input and applies the OLego pipeline (Wu et al. 2013), returning RPKM (reads per kilobase million) gene expression and PSI (percent spliced in) exon inclusion matrices. This workflow can be applied keeping the data as single cells/samples or pooling cells into pseudobulk samples based on a configuration file.
+- The “Mapping and quantification” workflow takes single- or paired-end fastq files as input and applies the OLego pipeline (Yan et al. 2015), returning RPKM (reads per kilobase million) gene expression and PSI (percent spliced in) exon inclusion matrices. This workflow can be applied keeping the data as single cells/samples or pooling cells into pseudobulk samples based on a configuration file.
 - The “Network reverse engineering” workflow takes an RPKM gene expression matrix, a PSI exon inclusion matrix, and a list of RBP names as input, inferring splicing regulatory networks and estimating RBP activity per single cell or per sample. Missing data values are first imputed by k-nearest neighbor. Then, it applies the ARACNe algorithm (Algorithm for the Reconstruction of Accurate Cellular NEtworks; Margolin et al. 2006), inferring splicing regulatory networks based on the mutual information between RBP expression and exon inclusion and returning a list of network edges (i.e. RBP regulons) with corresponding mutual information and p-values. Finally, it applies the VIPER algorithm (Virtual Inference of Protein activity by Enriched Regulon analysis; Alvarez et al. 2016) to estimate RBP activity for each input sample. In this step, the aREA algorithm (analytic Rank-based Enrichment Analysis) assesses the enrichment of regulon exons for each RBP based on weighted sums of quantile-transformed regulon exon inclusion ranks (see source literature for details). This workflow returns the splicing regulatory network and a matrix of estimated RBP activity values (normalized enrichment scores).
 
 ### Mapping and quantification
@@ -202,8 +202,8 @@ Please, report any issues that you experience through this repository's ["Issues
 Daniel F Moakley, Melissa Campbell, Miquel Anglada-Girotto, Huijuan Feng, Andrea Califano, Edmund Au, Chaolin Zhang. 2024. Reverse engineering neuron type-specific and type-orthogonal splicing-regulatory networks using single-cell transcriptomes. bioRxiv, doi: https://doi.org/10.1101/2024.06.13.597128
 
 ## References
-Wu, J., et al. (2013). "OLego: Fast and sensitive mapping of spliced mRNA-Seq reads using small seeds." Nucleic Acids Res 41(10): 5149-5163.
-
+Yan, Q., et al. (2015). "Systematic discovery of regulated and conserved alternative exons in the mammalian brain reveals NMD modulating chromatin regulators." Proc Natl Acad Sci U S A 112(11): 3445-3450.
+	
 Margolin, A. A., et al. (2006). "ARACNE: an algorithm for the reconstruction of gene regulatory networks in a mammalian cellular context." BMC Bioinformatics 7 Suppl 1(Suppl 1): S7.
 
 Alvarez, M. J., et al. (2016). "Functional characterization of somatic mutations in cancer using network-based inference of protein activity." Nat Genet 48(8): 838-847.
