@@ -94,16 +94,16 @@ graph LR
     H[RBP regulons]
     I[Estimated RBP activity]
 
+    G --> H
     E --> H
     F --> H
-    G --> H
     H --> I
     E --> I
 
 ```
 
 #### Requirements
-Tested with versions in brackets:
+Tested with versions in parentheses:
 - `Python` (3.8.17)
     - `pandas` (1.3.0)
 - `R` (4.1.0)
@@ -137,7 +137,6 @@ Make sure the gene identifiers in your gene list are found in the first column o
                   --jobs 100
         ```
 ## Recommended installations
-Examples with mm10 genome.
 - **olego** ([documentation](https://zhanglab.c2b2.columbia.edu/index.php/OLego_Documentation))
     - software
         ```shell
