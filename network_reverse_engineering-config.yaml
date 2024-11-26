@@ -38,5 +38,5 @@ PARAMS:
     ARACNE_CONSOLIDATE_PVALUE: 1.1
     
     # testing
-    TEST_MODE: True
+    TEST_MODE: False
     
