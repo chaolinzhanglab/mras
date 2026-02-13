@@ -40,7 +40,7 @@ Tested with versions in brackets:
 - [`olego`](https://github.com/chaolinzhanglab/olego) (1.1.9) *
 - [`quantas`](https://github.com/chaolinzhanglab/quantas) (1.1.1) *
 - [`czplib`](https://github.com/chaolinzhanglab/czplib) (1.0.9) *
-- [forked `ARACNe-AP`](https://github.com/chaolinzhanglab/ARACNe-AP)
+- [forked `ARACNe-AP` with bug fixes](https://github.com/chaolinzhanglab/ARACNe-AP)
 
 (*) see [recommended installations below](#recommended-installations)
 
